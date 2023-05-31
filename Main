@@ -1,0 +1,33 @@
+import re
+import requests
+metoda = int(input("Wybierz 1 aby, podać link, a następnie sprawdzić czy występuje tam dana fraza.\nWybierz 2 aby pdodać plik tekstowy, a nasępnie używając różnych metod wyszukać danego słowa .\nMój wybór to: "))
+if metoda == 1:
+    # link z którego wyszukiwane będzie słowo i dostęp do strony
+    link = input("Podaj link: ")
+
+    if link.startswith("https://"):
+        dane = requests.get(link)
+        dane_txt = dane.text
+        # fraza
+        szukane = input("Podaj szukaną frazę: ")
+        # Wyszukiwanie wyników
+        wyniki = re.findall(szukane, dane_txt)
+        # Wyświetlanie wyników
+        print("Znalezione dopasowania: ")
+        for wynik in wyniki:
+            print('\n',wynik)
+    else:
+        print('\n Podałeś niepoprawny link')
+if metoda == 2:
+    tekst = input("Podaj tekst, z którego chcesz wyszukać słowa: ")
+    # fraza
+    wybor = int(input("Wybierz 1 aby podać początek słowa, a program wyświetli je całe.\nWybierz 2 aby wyszuka tylko fragmenu słowa.\nMój wybór to: "))
+    szukane = input("Podaj szukaną frazę: ")
+    wyszukiwania = szukane + r'\w+\b'
+
+    # Wyszukiwanie wyników'
+    wyniki = re.findall(wyszukiwania, tekst, re.IGNORECASE)
+    # Wyświetlanie wyników
+    print("Znalezione dopasowania: ")
+    for wynik in wyniki:
+        print('\n', wynik)
