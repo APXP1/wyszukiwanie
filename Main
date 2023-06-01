@@ -23,11 +23,20 @@ if metoda == 2:
     # fraza
     wybor = int(input("Wybierz 1 aby podać początek słowa, a program wyświetli je całe.\nWybierz 2 aby wyszuka tylko fragmenu słowa.\nMój wybór to: "))
     szukane = input("Podaj szukaną frazę: ")
-    wyszukiwania = szukane + r'\w+\b'
+    if wybor == 1:
+        wyszukiwania = szukane + r'\w+\b'
 
-    # Wyszukiwanie wyników'
-    wyniki = re.findall(wyszukiwania, tekst, re.IGNORECASE)
-    # Wyświetlanie wyników
-    print("Znalezione dopasowania: ")
-    for wynik in wyniki:
-        print('\n', wynik)
+        # Wyszukiwanie wyników'
+        wyniki = re.findall(wyszukiwania, tekst, re.IGNORECASE)
+        # Wyświetlanie wyników
+        print("Znalezione dopasowania: ")
+        for wynik in wyniki:
+            print('\n', wynik)
+    if wybor == 2:
+        # Wyszukiwanie wyników'
+        wyniki = re.findall(szukane, tekst, re.IGNORECASE)
+        # Wyświetlanie wyników
+        print("Znalezione dopasowania: ")
+        for wynik in wyniki:
+            print('\n', wynik)
+
